@@ -1,0 +1,3 @@
+[submodule "packages/popup"]
+	path = packages/popup
+	url = https://github.com/auto-complete/popup-el.git
