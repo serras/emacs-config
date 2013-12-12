@@ -1,3 +1,20 @@
+(require 'cl)
+; Add packages to load-path
+(defvar packages
+  '(popup auto-complete
+    color-theme-solarized
+    raibow-delimiters))
+(loop for name in packages
+  do (add-to-list 'load-path
+       (concat (file-name-directory (or load-file-name
+                                        (buffer-file-name)))
+               "emacs-config/packages/"
+               (symbol-name name))))
+(add-to-list 'custom-theme-load-path 
+   (concat (file-name-directory (or load-file-name
+                                        (buffer-file-name)))
+               "emacs-config/packages/color-theme-solarized"))
+; Add Cabal to environment path
 (setenv "PATH" (concat "~/.cabal/bin:" (getenv "PATH")))
 (add-to-list 'exec-path "~/.cabal/bin")
 
@@ -8,9 +25,6 @@
   '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
 ; Colors
-;; install color-theme, color-theme-solarized
-(require 'color-theme)
-(require 'color-theme-solarized)
 (load-theme 'solarized-light t)
 ;; install rainbow-delimiters
 (require 'rainbow-delimiters)
@@ -42,7 +56,7 @@
 (require 'magit)
 ;; install auto-complete
 (require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete-20131120.2242/dict")
+(add-to-list 'ac-dictionary-directories "~/emacs-config/packages/auto-complete/dict")
 (ac-config-default)
 
 ; Haskell
@@ -80,8 +94,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ecb-options-version "2.40")
- '(ecb-source-path (quote (("/home/alejandro/code/sci.f100183.domsted/familiar-type-graphs" "familiar-type-graphs")))))
+ '(ecb-options-version "2.40"))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

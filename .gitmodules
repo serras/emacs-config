@@ -1,3 +1,15 @@
 [submodule "packages/popup"]
 	path = packages/popup
 	url = https://github.com/auto-complete/popup-el.git
+[submodule "packages/auto-complete"]
+	path = packages/auto-complete
+	url = https://github.com/auto-complete/auto-complete.git
+[submodule "packages/color-theme-solarized"]
+	path = packages/color-theme-solarized
+	url = https://github.com/sellout/emacs-color-theme-solarized.git
+[submodule "rainbow-delimiters"]
+	path = rainbow-delimiters
+	url = https://github.com/jlr/rainbow-delimiters.git
+[submodule "packages/undo-tree"]
+	path = packages/undo-tree
+	url = http://www.dr-qubit.org/git/undo-tree.git
