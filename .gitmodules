@@ -22,9 +22,6 @@
 [submodule "packages/ghci-completion"]
 	path = packages/ghci-completion
 	url = https://github.com/manzyuk/ghci-completion.git
-[submodule "packages/haskell-mode"]
-	path = packages/haskell-mode
-	url = https://github.com/haskell/haskell-mode.git
 [submodule "packages/structured-haskell-mode"]
 	path = packages/structured-haskell-mode
 	url = https://github.com/chrisdone/structured-haskell-mode.git
@@ -43,3 +40,6 @@
 [submodule "packages/sbt-mode"]
 	path = packages/sbt-mode
 	url = https://github.com/hvesalai/sbt-mode
+[submodule "packages/haskell-mode-1"]
+	path = packages/haskell-mode-1
+	url = https://github.com/haskell/haskell-mode.git

@@ -1,10 +1,21 @@
+; Add the package repository
+(require 'package)
+(add-to-list 'package-directory-list
+       (concat (file-name-directory (or load-file-name
+                                    (buffer-file-name)))
+               "emacs-config/packages"))
+(package-initialize)
+(add-to-list 'package-archives
+  '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
+; Set load path
 (require 'cl)
 ; Add packages to load-path
 (defvar packages
   '(popup auto-complete undo-tree
     color-theme-solarized
     rainbow-delimiters ecb
-    haskell-mode ghci-completion
+    ghci-completion
     magit magit-modes
     scala-mode-2 sbt-mode ensime))
 (loop for name in packages
@@ -29,12 +40,6 @@
 ; Add Cabal to environment path
 (setenv "PATH" (concat "~/.cabal/bin:" (getenv "PATH")))
 (add-to-list 'exec-path "~/.cabal/bin")
-
-; Add the package repository
-(require 'package)
-(package-initialize)
-(add-to-list 'package-archives
-  '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
 ; Colors
 (load-theme 'solarized-light t)
@@ -74,13 +79,8 @@
 ; Haskell
 ;; install ghc-mod, hlint, stylish-haskell from cabal
 ;; install haskell-mode
-;(require 'haskell-mode)
-(require 'haskell-mode-autoloads)
-(add-to-list 'Info-default-directory-list "~/emacs-config/packages/haskell-mode/")
-(eval-after-load "haskell-mode"
-    '(define-key haskell-mode-map (kbd "C-c C-c") 'haskell-compile))
-(eval-after-load "haskell-cabal"
-    '(define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-compile))
+(require 'haskell-mode)
+;(load "haskell-mode-autoloads")
 (add-hook 'haskell-mode-hook 'turn-on-haskell-decl-scan)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
@@ -88,8 +88,8 @@
 ;; install structured-haskell-mode
 (require 'shm)
 (add-hook 'haskell-mode-hook 'structured-haskell-mode)
-(eval-after-load "haskell-mode"
-    '(define-key haskell-mode-map (kbd "RET") 'shm/newline-indent))
+;(eval-after-load "haskell-mode"
+;    '(define-key haskell-mode-map (kbd "RET") 'shm/newline-indent))
 ;; install ghc
 (require 'ghc)
 (autoload 'ghc-init "ghc" nil t)
@@ -114,7 +114,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ecb-options-version "2.40")
- '(ecb-source-path '()))
+ '(ecb-source-path (quote (("/home/alejandro/Top/trunk" "Top") ("/home/alejandro/code/sci.f100183.domsted/solver" "solver") ("/" "/") ("/home/alejandro/code/sci.f100183.domsted/familiar-type-graphs" "familiar-type-graphs")))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
