@@ -13,3 +13,24 @@
 [submodule "packages/rainbow-delimiters"]
 	path = packages/rainbow-delimiters
 	url = https://github.com/jlr/rainbow-delimiters.git
+[submodule "packages/ecb"]
+	path = packages/ecb
+	url = https://github.com/alexott/ecb.git
+[submodule "packages/ghc"]
+	path = packages/ghc
+	url = https://github.com/kazu-yamamoto/ghc-mod.git
+[submodule "packages/ghci-completion"]
+	path = packages/ghci-completion
+	url = https://github.com/manzyuk/ghci-completion.git
+[submodule "packages/haskell-mode"]
+	path = packages/haskell-mode
+	url = https://github.com/haskell/haskell-mode.git
+[submodule "packages/structured-haskell-mode"]
+	path = packages/structured-haskell-mode
+	url = https://github.com/chrisdone/structured-haskell-mode.git
+[submodule "packages/magit"]
+	path = packages/magit
+	url = https://github.com/magit/magit.git
+[submodule "packages/magit-modes"]
+	path = packages/magit-modes
+	url = https://github.com/magit/git-modes

@@ -1,15 +1,26 @@
 (require 'cl)
 ; Add packages to load-path
 (defvar packages
-  '(popup auto-complete
+  '(popup auto-complete undo-tree
     color-theme-solarized
-    raibow-delimiters))
+    rainbow-delimiters ecb
+    haskell-mode ghci-completion
+    magit magit-modes))
 (loop for name in packages
   do (add-to-list 'load-path
        (concat (file-name-directory (or load-file-name
                                         (buffer-file-name)))
                "emacs-config/packages/"
                (symbol-name name))))
+(defvar packages-elisp
+  '(ghc structured-haskell-mode))
+(loop for name in packages-elisp
+  do (add-to-list 'load-path
+       (concat (file-name-directory (or load-file-name
+                                        (buffer-file-name)))
+               "emacs-config/packages/"
+               (symbol-name name)
+	       "/elisp")))
 (add-to-list 'custom-theme-load-path 
    (concat (file-name-directory (or load-file-name
                                         (buffer-file-name)))
@@ -38,6 +49,7 @@
 (tool-bar-mode -1) ;; Hide toolbar
 (define-key global-map (kbd "RET") 'newline-and-indent) ;; Indent on return
 ;; install undo-tree
+(require 'undo-tree)
 (global-undo-tree-mode 1)
 (defalias 'redo 'undo-tree-redo)
 (global-set-key (kbd "C-z") 'undo)
@@ -72,11 +84,10 @@
 (add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
 ; (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 ;; install structured-haskell-mode
-;(add-to-list 'load-path "/home/alejandro/structured-haskell-mode/elisp")
-;(require 'shm)
-;(add-hook 'haskell-mode-hook 'structured-haskell-mode)
-;(eval-after-load "haskell-mode"
-;    '(define-key haskell-mode-map (kbd "RET") 'shm/newline-indent))
+(require 'shm)
+(add-hook 'haskell-mode-hook 'structured-haskell-mode)
+(eval-after-load "haskell-mode"
+    '(define-key haskell-mode-map (kbd "RET") 'shm/newline-indent))
 ;; install ghc
 (require 'ghc)
 (autoload 'ghc-init "ghc" nil t)
