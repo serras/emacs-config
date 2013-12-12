@@ -74,7 +74,9 @@
 ; Haskell
 ;; install ghc-mod, hlint, stylish-haskell from cabal
 ;; install haskell-mode
-(require 'haskell-mode)
+;(require 'haskell-mode)
+(require 'haskell-mode-autoloads)
+(add-to-list 'Info-default-directory-list "~/emacs-config/packages/haskell-mode/")
 (eval-after-load "haskell-mode"
     '(define-key haskell-mode-map (kbd "C-c C-c") 'haskell-compile))
 (eval-after-load "haskell-cabal"
@@ -111,12 +113,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ecb-options-version "2.40"))
+ '(ecb-options-version "2.40")
+ '(ecb-source-path '()))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(shm-current-face ((t (:background "#EBEBEB"))))
+ '(shm-quarantine-face ((t (:background "#ECEAEA")))))
 
