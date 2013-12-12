@@ -5,7 +5,8 @@
     color-theme-solarized
     rainbow-delimiters ecb
     haskell-mode ghci-completion
-    magit magit-modes))
+    magit magit-modes
+    scala-mode-2 sbt-mode ensime))
 (loop for name in packages
   do (add-to-list 'load-path
        (concat (file-name-directory (or load-file-name
@@ -40,7 +41,6 @@
 ;; install rainbow-delimiters
 (require 'rainbow-delimiters)
 (global-rainbow-delimiters-mode)
-
 ; Parenthesis, lines, returns, undos
 (show-paren-mode 1)
 (require 'linum)
@@ -99,6 +99,12 @@
 ; Agda
 (load-file (let ((coding-system-for-read 'utf-8))
                 (shell-command-to-string "agda-mode locate")))
+
+; Scala
+(require 'scala-mode2)
+(require 'sbt-mode)
+(require 'ensime)
+(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

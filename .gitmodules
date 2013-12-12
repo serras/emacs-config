@@ -34,3 +34,12 @@
 [submodule "packages/magit-modes"]
 	path = packages/magit-modes
 	url = https://github.com/magit/git-modes
+[submodule "packages/ensime"]
+	path = packages/ensime
+	url = https://github.com/ensime/ensime.git
+[submodule "packages/scala-mode-2"]
+	path = packages/scala-mode-2
+	url = https://github.com/hvesalai/scala-mode2.git
+[submodule "packages/sbt-mode"]
+	path = packages/sbt-mode
+	url = https://github.com/hvesalai/sbt-mode
