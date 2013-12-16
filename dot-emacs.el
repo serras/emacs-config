@@ -89,6 +89,7 @@
 ; hi2 - Haskell indentation
 (require 'hi2)
 (add-hook 'haskell-mode-hook 'turn-on-hi2)
+(setq hi2-show-indentations nil)
 ;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
 ;(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 ;; install structured-haskell-mode
