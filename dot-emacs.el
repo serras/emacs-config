@@ -1,5 +1,6 @@
 ; Add the package repository
 (require 'package)
+; Use also the packages folder for automatic loading
 (add-to-list 'package-directory-list
        (concat (file-name-directory (or load-file-name
                                     (buffer-file-name)))
@@ -15,7 +16,7 @@
   '(popup auto-complete undo-tree
     color-theme-solarized
     rainbow-delimiters ecb
-    ghci-completion
+    hi2 ghci-completion
     magit magit-modes
     scala-mode-2 sbt-mode ensime))
 (loop for name in packages
@@ -79,17 +80,20 @@
 ; Haskell
 ;; install ghc-mod, hlint, stylish-haskell from cabal
 ;; install haskell-mode
+;; - Run 'make all' in packages/haskell-mode-1
+;; - Copy 'haskell-mode-pkg.el.in' to 'haskell-mode-pkg.el' changing the version
 (require 'haskell-mode)
 ;(load "haskell-mode-autoloads")
 (add-hook 'haskell-mode-hook 'turn-on-haskell-decl-scan)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
-; (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+; hi2 - Haskell indentation
+(require 'hi2)
+(add-hook 'haskell-mode-hook 'turn-on-hi2)
+;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
+;(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 ;; install structured-haskell-mode
-(require 'shm)
-(add-hook 'haskell-mode-hook 'structured-haskell-mode)
-;(eval-after-load "haskell-mode"
-;    '(define-key haskell-mode-map (kbd "RET") 'shm/newline-indent))
+;(require 'shm)
+;(add-hook 'haskell-mode-hook 'structured-haskell-mode)
 ;; install ghc
 (require 'ghc)
 (autoload 'ghc-init "ghc" nil t)
@@ -114,7 +118,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ecb-options-version "2.40")
- '(ecb-source-path (quote (("/home/alejandro/Top/trunk" "Top") ("/home/alejandro/code/sci.f100183.domsted/solver" "solver") ("/" "/") ("/home/alejandro/code/sci.f100183.domsted/familiar-type-graphs" "familiar-type-graphs")))))
+ '(ecb-source-path (quote (("/home/alejandro/Top/trunk" "Top") ("/home/alejandro/code/sci.f100183.domsted/solver" "solver") ("/home/alejandro/code/sci.f100183.domsted/familiar-type-graphs" "familiar-type-graphs")))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

@@ -43,3 +43,6 @@
 [submodule "packages/haskell-mode-1"]
 	path = packages/haskell-mode-1
 	url = https://github.com/haskell/haskell-mode.git
+[submodule "packages/hi2"]
+	path = packages/hi2
+	url = https://github.com/errge/hi2.git
