@@ -46,3 +46,18 @@
 [submodule "packages/hi2"]
 	path = packages/hi2
 	url = https://github.com/errge/hi2.git
+[submodule "packages/elpy"]
+	path = packages/elpy
+	url = https://github.com/jorgenschaefer/elpy.git
+[submodule "find-file-in-project"]
+	path = packages/find-file-in-project
+	url = https://github.com/technomancy/find-file-in-project.git
+[submodule "packages/highlight-indentation"]
+	path = packages/highlight-indentation
+	url = https://github.com/antonj/Highlight-Indentation-for-Emacs.git
+[submodule "packages/pyvenv"]
+	path = packages/pyvenv
+	url = https://github.com/jorgenschaefer/pyvenv.git
+[submodule "packages/yasnippet"]
+	path = packages/yasnippet
+	url = https://github.com/capitaomorte/yasnippet.git
