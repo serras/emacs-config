@@ -79,6 +79,17 @@
 (add-to-list 'ac-dictionary-directories "~/emacs-config/packages/auto-complete/dict")
 (ac-config-default)
 
+; LaTeX
+(load "auctex.el" nil t t)
+(setq TeX-auto-save t)
+(setq TeX-parse-self t)
+(setq-default TeX-master nil)
+(add-hook 'LaTeX-mode-hook 'visual-line-mode)
+(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+(setq TeX-PDF-mode t)
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+(setq reftex-plug-into-AUCTeX t)
+
 ; Haskell
 ;; install ghc-mod, hlint, stylish-haskell from cabal
 ;; install haskell-mode
