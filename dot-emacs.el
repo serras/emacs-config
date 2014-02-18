@@ -18,6 +18,8 @@
     rainbow-delimiters ecb
     hi2 ghci-completion
     magit magit-modes
+    find-file-in-project highlight-indentation
+    idomenu nose pyvenv yasnippet elpy
     scala-mode-2 sbt-mode ensime))
 (loop for name in packages
   do (add-to-list 'load-path
@@ -112,6 +114,17 @@
 (require 'sbt-mode)
 (require 'ensime)
 (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+
+; Python
+(require 'find-file-in-project)
+(require 'highlight-indentation)
+(require 'idomenu)
+(require 'nose)
+(require 'pyvenv)
+(require 'yasnippet)
+(require 'elpy)
+(elpy-enable)
+(elpy-use-ipython)
 
 ; Coq
 (load-file "~/emacs-config/packages/ProofGeneral-4.2/generic/proof-site.el")
