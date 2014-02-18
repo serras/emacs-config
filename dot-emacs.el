@@ -122,7 +122,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ecb-options-version "2.40")
- '(ecb-source-path (quote (("/home/alejandro/Top/trunk" "Top") ("/home/alejandro/code/sci.f100183.domsted/solver" "solver")))))
+ '(ecb-source-path (quote (("/home/alejandro/Top/trunk" "Top") ("/home/alejandro/code/sci.f100183.domsted/solver" "solver") ("/home/alejandro/code/sci.f100183.domsted/solver2" "solver2") ("/home/alejandro/code/sci.f100183.domsted/unif-examples" "unif-examples") ("/home/alejandro/teaching/TPT" "TPT") ("/home/alejandro/papers/haskell-2014" "haskell-2014")))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
