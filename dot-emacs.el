@@ -1,3 +1,4 @@
+;; Paackages
 ; Add the package repository
 (require 'package)
 ; Use also the packages folder for automatic loading
@@ -8,15 +9,17 @@
 (package-initialize)
 (add-to-list 'package-archives
   '("melpa" . "http://melpa.milkbox.net/packages/") t)
-
 ; Set load path
 (require 'cl)
 ; Add packages to load-path
+; Some are in packages/* ...
 (defvar packages
   '(popup auto-complete undo-tree
     color-theme-solarized
     rainbow-delimiters ecb
+    haskell-mode-1
     hi2 ghci-completion
+    idris-mode
     magit magit-modes
     find-file-in-project highlight-indentation
     idomenu nose pyvenv yasnippet elpy
@@ -27,6 +30,7 @@
                                         (buffer-file-name)))
                "emacs-config/packages/"
                (symbol-name name))))
+; ... and others in packages/*/elisp
 (defvar packages-elisp
   '(ghc structured-haskell-mode))
 (loop for name in packages-elisp
@@ -40,13 +44,11 @@
    (concat (file-name-directory (or load-file-name
                                         (buffer-file-name)))
                "emacs-config/packages/color-theme-solarized"))
-; Add Cabal to environment path
-(setenv "PATH" (concat "~/.cabal/bin:" (getenv "PATH")))
-(add-to-list 'exec-path "~/.cabal/bin")
 
-; Colors
+;; Editor-related packages
+; Color theme
 (load-theme 'solarized-light t)
-;; install rainbow-delimiters
+; Color matching brackets
 (require 'rainbow-delimiters)
 (global-rainbow-delimiters-mode)
 ; Parenthesis, lines, returns, undos
@@ -56,14 +58,18 @@
 (cua-mode 1) ;; Windows shortcuts
 (tool-bar-mode -1) ;; Hide toolbar
 (define-key global-map (kbd "RET") 'newline-and-indent) ;; Indent on return
-;; install undo-tree
+; Better undo support
 (require 'undo-tree)
 (global-undo-tree-mode 1)
 (defalias 'redo 'undo-tree-redo)
 (global-set-key (kbd "C-z") 'undo)
 (global-set-key (kbd "C-S-z") 'redo)
+; General autocompletion
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/emacs-config/packages/auto-complete/dict")
+(ac-config-default)
 
-; File list
+;; File list
 (require 'ecb)
 (setq ecb-auto-activate t)
 (setq ecb-layout-name "left13")
@@ -71,15 +77,11 @@
 (setq ecb-tip-of-the-day nil)
 (setq ecb-windows-width 13)
 
-; Tools
-;; install magit
+;; Git
 (require 'magit)
-;; install auto-complete
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/emacs-config/packages/auto-complete/dict")
-(ac-config-default)
 
-; LaTeX
+;; LaTeX
+; Needs AucTeX from system
 (load "auctex.el" nil t t)
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
@@ -90,43 +92,49 @@
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (setq reftex-plug-into-AUCTeX t)
 
-; Haskell
-;; install ghc-mod, hlint, stylish-haskell from cabal
-;; install haskell-mode
-;; - Run 'make all' in packages/haskell-mode-1
-;; - Copy 'haskell-mode-pkg.el.in' to 'haskell-mode-pkg.el' changing the version
-(require 'haskell-mode)
-;(load "haskell-mode-autoloads")
+;; Haskell
+; Add Cabal to environment path
+(setenv "PATH" (concat "~/.cabal/bin:" (getenv "PATH")))
+(add-to-list 'exec-path "~/.cabal/bin")
+; install ghc-mod, hlint, stylish-haskell from cabal
+;(require 'haskell-mode)
+(load "haskell-mode-autoloads")
 (add-hook 'haskell-mode-hook 'turn-on-haskell-decl-scan)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc)
 ; hi2 - Haskell indentation
 (require 'hi2)
 (add-hook 'haskell-mode-hook 'turn-on-hi2)
 (setq hi2-show-indentations nil)
+; These are other possible indentations
 ;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
 ;(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-;; install structured-haskell-mode
+; Structured Haskell Mode (now disabled)
 ;(require 'shm)
 ;(add-hook 'haskell-mode-hook 'structured-haskell-mode)
-;; install ghc
+; Extra packages
 (require 'ghc)
 (autoload 'ghc-init "ghc" nil t)
 (add-hook 'haskell-mode-hook (lambda () (ghc-init) (flymake-mode)))
-;; install ghci-completion
 (require 'ghci-completion)
 (add-hook 'inferior-haskell-mode-hook 'turn-on-ghci-completion)
 
-; Agda
+;; Agda
 (load-file (let ((coding-system-for-read 'utf-8))
                 (shell-command-to-string "agda-mode locate")))
 
-; Scala
+;; Idris
+(require 'idris-mode)
+
+;; Coq
+(load-file "~/emacs-config/packages/ProofGeneral-4.2/generic/proof-site.el")
+
+;; Scala
 (require 'scala-mode2)
 (require 'sbt-mode)
 (require 'ensime)
 (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
-; Python
+;; Python
 (require 'find-file-in-project)
 (require 'highlight-indentation)
 (require 'idomenu)
@@ -135,10 +143,11 @@
 (require 'yasnippet)
 (require 'elpy)
 (elpy-enable)
+; Requires ipython
 (elpy-use-ipython)
 
-; Coq
-(load-file "~/emacs-config/packages/ProofGeneral-4.2/generic/proof-site.el")
+;; Ruby
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -146,7 +155,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ecb-options-version "2.40")
- '(ecb-source-path (quote (("/home/alejandro/Top/trunk" "Top") ("/home/alejandro/code/sci.f100183.domsted/solver" "solver") ("/home/alejandro/code/sci.f100183.domsted/solver2" "solver2") ("/home/alejandro/code/sci.f100183.domsted/unif-examples" "unif-examples") ("/home/alejandro/teaching/TPT" "TPT") ("/home/alejandro/papers/haskell-2014" "haskell-2014")))))
+ '(ecb-source-path (quote (("/home/alejandro/Top/trunk" "Top") ("/home/alejandro/code/sci.f100183.domsted/solver" "solver") ("/home/alejandro/code/sci.f100183.domsted/solver2" "solver2") ("/home/alejandro/code/sci.f100183.domsted/unif-examples" "unif-examples") ("/home/alejandro/teaching/TPT" "TPT") ("/home/alejandro/papers/haskell-2014" "haskell-2014") ("/home/serras/tasty-json" "tasty-json")))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
