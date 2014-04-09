@@ -1,11 +1,11 @@
-;; Paackages
+;; Packages
 ; Add the package repository
 (require 'package)
 ; Use also the packages folder for automatic loading
 (add-to-list 'package-directory-list
        (concat (file-name-directory (or load-file-name
                                     (buffer-file-name)))
-               "emacs-config/packages"))
+               "packages"))
 (package-initialize)
 (add-to-list 'package-archives
   '("melpa" . "http://melpa.milkbox.net/packages/") t)
@@ -28,7 +28,7 @@
   do (add-to-list 'load-path
        (concat (file-name-directory (or load-file-name
                                         (buffer-file-name)))
-               "emacs-config/packages/"
+               "packages/"
                (symbol-name name))))
 ; ... and others in packages/*/elisp
 (defvar packages-elisp
@@ -37,13 +37,13 @@
   do (add-to-list 'load-path
        (concat (file-name-directory (or load-file-name
                                         (buffer-file-name)))
-               "emacs-config/packages/"
+               "packages/"
                (symbol-name name)
 	       "/elisp")))
 (add-to-list 'custom-theme-load-path 
    (concat (file-name-directory (or load-file-name
                                         (buffer-file-name)))
-               "emacs-config/packages/color-theme-solarized"))
+               "packages/color-theme-solarized"))
 
 ;; Editor-related packages
 ; Color theme
@@ -148,20 +148,4 @@
 
 ;; Ruby
 
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ecb-options-version "2.40")
- '(ecb-source-path (quote (("/home/alejandro/Top/trunk" "Top") ("/home/alejandro/code/sci.f100183.domsted/solver" "solver") ("/home/alejandro/code/sci.f100183.domsted/solver2" "solver2") ("/home/alejandro/code/sci.f100183.domsted/unif-examples" "unif-examples") ("/home/alejandro/teaching/TPT" "TPT") ("/home/alejandro/papers/haskell-2014" "haskell-2014") ("/home/serras/tasty-json" "tasty-json")))))
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(shm-current-face ((t (:background "#EBEBEB"))))
- '(shm-quarantine-face ((t (:background "#ECEAEA")))))
 
